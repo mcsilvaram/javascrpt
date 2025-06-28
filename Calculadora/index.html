@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <title>Calculadora JS</title>
+    </head>
+        <body>
+        <h1>Calculadora</h1>
+
+        <input type="number" id="num1" placeholder="Número 1">
+        <input type="number" id="num2" placeholder="Número 2">
+
+        <select id="operador">
+            <option value="suma">Suma</option>
+            <option value="resta">Resta</option>
+            <option value="multiplicacion">Multiplicación</option>
+            <option value="division">División</option>
+        </select>
+
+        <!-- Botón para calcular -->
+        <button onclick="calcular()">Calcular</button>
+
+        <!-- 🔴 Botón para borrar los campos -->
+        <button onclick="limpiar()">Borrar</button>
+
+        <p id="resultado"></p>
+
+        <script src="script.js"></script>
+
+            <script>
+                function calculadora(num1, num2, operador) {
+                // Validación: verifica si los valores ingresados son números válidos
+                    if (isNaN(num1) || isNaN(num2)) {
+                        return "Error: ambos valores deben ser números.";
+                    }
+                    // Evaluamos el tipo de operación a realizar según el operador recibido
+                    switch (operador) {
+                        case "suma":
+                        return `${num1 + num2}`;
+                        case "resta":
+                        return `${num1 - num2}`;
+                        case "multiplicacion":
+                        return `${num1 * num2}`;
+                        case "division":
+                        if (num2 === 0) {
+                            return "Error: no se puede dividir entre cero.";
+                        }
+                        // Retorna el resultado de la división, redondeado a 2 decimales
+                        return `${(num1 / num2).toFixed(2)}`;
+                        default:
+                        // Si el operador no coincide con los casos definidos, muestra error
+                        return "Error: operador no válido.";
+                    }
+                }
+
+                // Función que obtiene los datos del formulario HTML y muestra el resultado
+                function calcular() {
+                    // Captura los valores ingresados por el usuario desde los elementos del DOM
+                    const num1 = parseFloat(document.getElementById("num1").value);
+                    const num2 = parseFloat(document.getElementById("num2").value);
+                    const operador = document.getElementById("operador").value;
+                    // Llama a la función calculadora con los datos capturados
+                    const resultado = calculadora(num1, num2, operador);
+                    // Muestra el resultado dentro del elemento <p> con id="resultado"
+                    document.getElementById("resultado").textContent = `Resultado: ${resultado}`;
+                    }
+                // ✅ Función que limpia los campos y el resultado
+                function limpiar() {
+                    document.getElementById("num1").value = "";
+                    document.getElementById("num2").value = "";
+                    document.getElementById("operador").value = "suma"; // valor por defecto
+                    document.getElementById("resultado").textContent = "";
+                    }
+            </script>
+        </body>
+</html>
