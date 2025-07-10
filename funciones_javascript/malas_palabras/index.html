@@ -16,30 +16,30 @@
   <label for="texto">Escribe un texto o párrafo:</label>
   <textarea id="texto" placeholder="Escribe aquí tu texto..."></textarea><br><br>
   
-  <button onclick="procesartexto()">Censurar texto</button>
+  <button onclick="procesarTexto()">Censurar texto</button>
 
   <p id="resultado"></p>
 
   <script>
     function censurarTexto(texto) {
       // Lista de palabras prohibidas
-      const malaspalabras = ["tonto", "chispas", "recorcholis", "rayos", "caracoles", "cielos"];
+      const malasPalabras = ["tonto", "chispas", "recorcholis", "rayos", "caracoles", "cielos"];
 
       // Reemplaza cada palabra con "**"
-      let textomodificado = texto;
+      let textoModificado = texto;
 
-      malaspalabras.forEach(palabra => {
+      malasPalabras.forEach(palabra => {
         const regex = new RegExp(`\\b${palabra}\\b`, "gi");
-        textomodificado = textomodificado.replace(regex, "**");
+        textoModificado = textoModificado.replace(regex, "**");
       });
 
       return textoModificado;
     }
 
     function procesarTexto() {
-      const textousuario = document.getElementById("texto").value;
-      const resultado = censurarTexto(textousuario);
-      document.getElementById("resultado").textcontent = `Texto censurado: ${resultado}`;
+      const textoUsuario = document.getElementById("texto").value;
+      const resultado = censurarTexto(textoUsuario);
+      document.getElementById("resultado").textContent = `Texto censurado: ${resultado}`;
     }
   </script>
 
