@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Filtro de Malas Palabras</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    textarea { width: 100%; height: 100px; }
+    #resultado { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>Filtro de malas palabras</h1>
+  
+  <label for="texto">Escribe un texto o párrafo:</label>
+  <textarea id="texto" placeholder="Escribe aquí tu texto..."></textarea><br><br>
+  
+  <button onclick="procesartexto()">Censurar texto</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    function censurarTexto(texto) {
+      // Lista de palabras prohibidas
+      const malaspalabras = ["tonto", "chispas", "recorcholis", "rayos", "caracoles", "cielos"];
+
+      // Reemplaza cada palabra con "**"
+      let textomodificado = texto;
+
+      malaspalabras.forEach(palabra => {
+        const regex = new RegExp(`\\b${palabra}\\b`, "gi");
+        textomodificado = textomodificado.replace(regex, "**");
+      });
+
+      return textoModificado;
+    }
+
+    function procesarTexto() {
+      const textousuario = document.getElementById("texto").value;
+      const resultado = censurarTexto(textousuario);
+      document.getElementById("resultado").textcontent = `Texto censurado: ${resultado}`;
+    }
+  </script>
+
+</body>
+</html>
