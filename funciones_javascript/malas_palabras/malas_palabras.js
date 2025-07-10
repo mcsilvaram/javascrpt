@@ -1,24 +1,22 @@
-function censurartexto(texto) {
-  // Lista de palabras prohibidas
-  const malaspalabras = ["tonto", "chispas", "recorcholis", "rayos", "caracoles", "cielos"];
+function censurarTexto(texto) {
+      // Lista de palabras prohibidas
+      const malasPalabras = ["tonto", "chispas", "recorcholis", "rayos", "caracoles", "cielos"];
 
-  // Usamos expresión regular para buscar cada palabra (ignorando mayúsculas/minúsculas)
-  let textomodificado = texto;
+      // Reemplaza cada palabra con "**"
+      let textoModificado = texto;
 
-  malasPalabras.forEach(palabra => {
-    // gi=expresión regular con la palabra, global e insensible a mayúsculas
-    const regex = new RegExp(`\\b${palabra}\\b`, "gi");
-    textomodificado = textomodificado.replace(regex, "**");  // reemplaza cada palabra por **.
-  });
+      malasPalabras.forEach(palabra => {
+        const regex = new RegExp(`\\b${palabra}\\b`, "gi");
+        textoModificado = textoModificado.replace(regex, "**");
+      });
 
-  return textomodificado;
-}
+      return textoModificado;
+    }
 
- function procesarTexto() {
+    function procesarTexto() {
       const textoUsuario = document.getElementById("texto").value;
       const resultado = censurarTexto(textoUsuario);
-      document.getElementById("resultado").textContent = `Texto censurado: ${resultado}`;
-    }
+      document.getElementById("resultado").text
 
 // Crea una función que reciba un texto o parrafo y verifique si contiene 
 //  alguna las siguientes malas palabras:
