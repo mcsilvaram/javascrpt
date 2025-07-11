@@ -1,5 +1,5 @@
 window.onload = function () {
-  let personas = [
+  const personas = [
     { nombre: "Juan", edad: 25, pais: "España", sexo: "masculino" },
     { nombre: "María", edad: 30, pais: "México", sexo: "femenino" },
     { nombre: "Pedro", edad: 22, pais: "Argentina", sexo: "masculino" },
@@ -7,33 +7,68 @@ window.onload = function () {
     { nombre: "Luis", edad: 35, pais: "España", sexo: "masculino" },
   ];
 
-  const edadesUnicas = [...new Set(personas.map(p => p.edad))];
+  const edades = [...new Set(personas.map(p => p.edad))];
+  const paises = [...new Set(personas.map(p => p.pais))];
+  const sexos = [...new Set(personas.map(p => p.sexo))];
 
   const selectEdad = document.getElementById("edad");
-  edadesUnicas.forEach(edad => {
-    const opcion = document.createElement("option");
-    opcion.value = edad;
-    opcion.textContent = edad;
-    selectEdad.appendChild(opcion);
+  const selectPais = document.getElementById("pais");
+  const selectSexo = document.getElementById("sexo");
+
+  // Cargar edades
+  edades.forEach(edad => {
+    const option = document.createElement("option");
+    option.value = edad;
+    option.textContent = edad;
+    selectEdad.appendChild(option);
   });
 
+  // Cargar países
+  paises.forEach(pais => {
+    const option = document.createElement("option");
+    option.value = pais;
+    option.textContent = pais;
+    selectPais.appendChild(option);
+  });
+
+  // Cargar sexos
+  sexos.forEach(sexo => {
+    const option = document.createElement("option");
+    option.value = sexo;
+    option.textContent = sexo.charAt(0).toUpperCase() + sexo.slice(1);
+    selectSexo.appendChild(option);
+  });
+
+  // Filtrar por edad
   window.filtrarPorEdad = function () {
-    const edadSeleccionada = parseInt(selectEdad.value);
-    const resultado = personas.filter(p => p.edad === edadSeleccionada);
+    const edad = parseInt(selectEdad.value);
+    const resultado = personas.filter(p => p.edad === edad);
+    mostrarResultado(resultado, `Edad: ${edad}`);
+  };
 
+  // Filtrar por país y sexo
+  window.filtrarPorPaisYSexo = function () {
+    const pais = selectPais.value;
+    const sexo = selectSexo.value;
+    const resultado = personas.filter(p => p.pais === pais && p.sexo === sexo);
+    mostrarResultado(resultado, `País: ${pais} y Sexo: ${sexo}`);
+  };
+
+  // Mostrar resultados
+  function mostrarResultado(lista, criterio) {
     const contenedor = document.getElementById("resultado");
-    contenedor.innerHTML = "";
+    contenedor.innerHTML = `<strong>Filtrado por ${criterio}:</strong><br><br>`;
 
-    if (resultado.length === 0) {
-      contenedor.textContent = "No hay personas con esa edad.";
+    if (lista.length === 0) {
+      contenedor.innerHTML += "No se encontraron personas.";
       return;
     }
 
-    resultado.forEach(p => {
+    lista.forEach(p => {
       const div = document.createElement("div");
       div.classList.add("persona");
       div.textContent = `${p.nombre}, ${p.edad} años, ${p.pais}, ${p.sexo}`;
       contenedor.appendChild(div);
     });
-  };
+  }
 };
