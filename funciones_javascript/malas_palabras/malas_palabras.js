@@ -6,9 +6,15 @@ function censurarTexto(texto) {
       let textoModificado = texto;
 
       malasPalabras.forEach(palabra => {
-        const regex = new RegExp(`\\b${palabra}\\b`, "gi");
-        textoModificado = textoModificado.replace(regex, "**");
-      });
+    const regex = new RegExp(`\\b${palabra}\\b`, "gi");
+
+    textoModificado = textoModificado.replace(regex, (coincidencia) => {
+      // Deja la primera letra y reemplaza el resto con *
+      const primeraLetra = coincidencia.charAt(0);
+      const censura = "*".repeat(coincidencia.length - 1);
+      return primeraLetra + censura;
+    });
+  });
 
       return textoModificado;
     }
@@ -16,8 +22,13 @@ function censurarTexto(texto) {
     function procesarTexto() {
       const textoUsuario = document.getElementById("texto").value;
       const resultado = censurarTexto(textoUsuario);
-      document.getElementById("resultado").text
-
+      document.getElementById("resultado").textContent = `Texto censurado: ${resultado}`;
+    }
+    // Nueva función para limpiar los campos
+    function limpiarTexto() {
+      document.getElementById("texto").value = "";
+      document.getElementById("resultado").textContent = "";
+      }
 // Crea una función que reciba un texto o parrafo y verifique si contiene 
 //  alguna las siguientes malas palabras:
 //  - "tonto"
