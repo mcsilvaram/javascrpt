@@ -3,27 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Filtro de Malas Palabras</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
-    textarea { width: 100%; height: 100px; margin-bottom: 10px; }
-    button { margin-right: 10px; padding: 8px 16px; }
-    #resultado { margin-top: 20px; font-weight: bold; }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
 
-  <h1>Filtro de malas palabras</h1>
+  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-xl">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Filtro de Malas Palabras</h1>
 
-  <label for="texto">Escribe un texto o párrafo:</label>
-  <textarea id="texto" placeholder="Escribe aquí tu texto..."></textarea><br>
+    <label for="texto" class="block text-gray-700 font-medium mb-2">Escribe un texto o párrafo:</label>
+    <textarea
+      id="texto"
+      placeholder="Escribe aquí tu texto..."
+      class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 resize-none mb-4"
+    ></textarea>
 
-  <button onclick="procesarTexto()">Censurar texto</button>
-  <button onclick="limpiarTexto()">Borrar</button>
+    <div class="flex gap-4 mb-6">
+      <button
+        onclick="procesarTexto()"
+        class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900 transition"
+      >
+        Censurar texto
+      </button>
 
-  <p id="resultado"></p>
-  <p> Palabras a Censurar: "tonto", "chispas", "recorcholis", "rayos", "caracoles", "cielos"></p>
+      <button
+        onclick="limpiarTexto()"
+        class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition"
+      >
+        Borrar
+      </button>
+    </div>
+
+    <p id="resultado" class="text-gray-800 font-semibold mb-4"></p>
+
+    <p class="text-sm text-gray-600 italic">
+      Palabras a censurar: <span class="font-medium">"tonto", "chispas", "recorcholis", "rayos", "caracoles", "cielos"</span>
+    </p>
+  </div>
 
   <script src="malas_palabras.js"></script>
-
 </body>
 </html>
