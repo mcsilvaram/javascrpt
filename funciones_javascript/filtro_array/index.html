@@ -2,26 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Filtro por Edad</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    select, button { padding: 8px; margin-top: 10px; }
-    #resultado { margin-top: 20px; }
-    .persona { margin-bottom: 10px; }
-  </style>
+  <title>Filtrar Personas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-6">
 
-  <h2>Filtrar personas por edad</h2>
+  <h2 class="text-2xl font-bold mb-6">Filtrar personas</h2>
 
-  <label for="edad">Selecciona una edad:</label>
-  <select id="edad">
-    <!-- Opciones generadas dinámicamente -->
-  </select>
+  <!-- Recuadro gris: Filtro por edad -->
+  <div class="bg-gray-200 p-6 rounded-xl shadow-md w-full max-w-md mb-6">
+    <h3 class="text-lg font-semibold mb-4">Opción 1: Filtrar por Edad</h3>
 
-  <button onclick="filtrarPorEdad()">Filtrar</button>
+    <label for="edad" class="block text-sm font-medium text-gray-700 mb-1">Selecciona una edad:</label>
+    <select id="edad" class="w-full p-2 border border-gray-300 rounded mb-3"></select>
 
-  <div id="resultado"></div>
+    <button onclick="filtrarPorEdad()" class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition">
+      Filtrar por Edad
+    </button>
+  </div>
+
+  <!-- Recuadro azul: Filtro por país y sexo -->
+  <div class="bg-blue-200 p-6 rounded-xl shadow-md w-full max-w-md mb-6">
+    <h3 class="text-lg font-semibold mb-4">Opción 2: Filtrar por País y Sexo</h3>
+
+    <label for="pais" class="block text-sm font-medium text-blue-900 mb-1">Selecciona un país:</label>
+    <select id="pais" class="w-full p-2 border border-blue-300 rounded mb-3"></select>
+
+    <label for="sexo" class="block text-sm font-medium text-blue-900 mb-1">Selecciona un sexo:</label>
+    <select id="sexo" class="w-full p-2 border border-blue-300 rounded mb-3"></select>
+
+    <button onclick="filtrarPorPaisYSexo()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+      Filtrar por País y Sexo
+    </button>
+  </div>
+
+  <!-- Recuadro de resultados -->
+  <div id="resultado" class="bg-white p-6 rounded-xl shadow-md w-full max-w-md text-gray-800">
+    <!-- Aquí se mostrarán los resultados -->
+  </div>
 
   <script src="filtro_array.js"></script>
 </body>
