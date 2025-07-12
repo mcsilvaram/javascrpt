@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego de la Vieja</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-center p-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Juego de la Vieja (Tres en línea)</h1>
+
+  <div id="game" class="grid grid-cols-3 gap-3 max-w-[320px] mx-auto mb-6">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+  </div>
+
+  <div id="mensaje" class="text-xl font-semibold text-blue-700 mb-4"></div>
+  <button onclick="reiniciarJuego()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow">
+    Reiniciar
+  </button>
+
+  <script src="tresEnLinea.js"></script>
+
+  
+  <div class="w-24 h-24 bg-white border-2 border-gray-800 text-3xl leading-[6rem] cursor-pointer 
+   select-none hover:bg-gray-200" data-index="0"></div>
+  
+</body>
+</html>
